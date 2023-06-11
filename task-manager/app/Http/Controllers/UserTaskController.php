@@ -10,7 +10,7 @@ class UserTaskController extends Controller
 
     public function index($user_id){    
         $tasks = Task::get()->where('user_id', $user_id);
-        if(is_null($taks)){
+        if(is_null($tasks)){
             return response()->json('Data not found', 404);
         }
         return response()->json($tasks);

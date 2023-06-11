@@ -4,10 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskControler;
-use App\Http\Controllers\ProjectTaskControler;
-use App\Http\Controllers\UserTaskControler;
-use App\Http\Controllers\API\AuthControllerh;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProjectTaskController;
+use App\Http\Controllers\UserTaskController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ Route::resource('projects', ProjectController::class);
 Route::resource('tasks', TaskController::class);
 
 Route::get('/users/{id}/tasks', [UserTaskController::class, 'index'])->name('users.tasks.index');
-Route::get('/project/{id}/tasks', [ProjectTaskController::class, 'index'])->name('projects.tasks.index');
+Route::get('/projects/{id}/tasks', [ProjectTaskController::class, 'index'])->name('projects.tasks.index');
 
 
 Route::post('/register', [AuthController::class, 'register']);
