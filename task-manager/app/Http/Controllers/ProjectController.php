@@ -66,13 +66,13 @@ class ProjectController extends Controller
             return response()->json($validator->errors());
         }
 
-        $project->update([           
-            'title' => $request->title,
-            'description'=>$request->description,
-            'date'=>$request->date
-        ]);
-
-        return new ProjectResource($project);
+         
+        $project->title =$request->title;
+        $project->description=$request->description;
+        $project->date=$request->date;
+        $project->save();
+        
+        return response()->json(['Project updated successfully', new ProjectResource($project)]);
     }
 
     /**

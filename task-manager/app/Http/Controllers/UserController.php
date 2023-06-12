@@ -67,13 +67,13 @@ class UserController extends Controller
             return response()->json($validator->errors());
         }
 
-        $user->update([           
-            'name' => $request->name,
-            'email'=>$request->email,
-            'password' => Hash::make($request->password)
-        ]);
+                 
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password= Hash::make($request->password);
+        $user->save();
 
-        return new UserResource($user);
+        return response()->json(['User updated successfully', new UserResource($user)]);
     }
 
     /**

@@ -74,15 +74,17 @@ class TaskController extends Controller
             return response()->json($validator->errors());
         }
 
-        $task = Task::update([
-            'title' => $request->title,
-            'description'=>$request->description,
-            'done' => $request->done,
-            'user_id' => $request->user_id,
-            'project_id' => $request->project_id,
-        ]);
+        
+        $task->title =$request->title;
+        $task->description=$request->description;
+        $task->done= $request->done;
+        $task->user_id= $request->user_id;
+        $task->project_id=$request->project_id;
+        
+        $task->save();
 
-        return new TaskResource($task);
+        return response()->json(['Task updated successfully', new TaskResource($task)]);
+        
     }
 
     /**

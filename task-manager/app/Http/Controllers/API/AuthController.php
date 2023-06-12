@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        # code...
+        
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
             'email'=>'required|string|max:255|unique:users',
@@ -45,8 +45,11 @@ class AuthController extends Controller
 
         return response()->json(['message'=>'Hi '. $user->name. ' welcome to home ', 'access_token'=>$token, 'token_type'=>'Bearer']);
     }
-    // public function logout(){
-    //     auth()->user()->tokens()->delete();
-    //     return['message'=>'You have logout'];
-    // }
+
+    
+     public function logout(){
+        Auth::logout();
+        auth()->user()->tokens()->delete();
+         return['message'=>'You have logout'];
+     }
 }
